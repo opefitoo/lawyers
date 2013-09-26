@@ -40,10 +40,6 @@ class PartieAdverse(models.Model):
         return self.name
     
 class Dossier(models.Model):
-    client = models.ForeignKey(Client)
-    partie_adverse = models.ForeignKey(PartieAdverse)
-    adversaire = models.ForeignKey(Adversaire)
-    date_ouverture = models.DateField("Date d'ouverture")
     TRIBUNAL_ADMINISTRATIF = 'ADM'
     CIVIL = 'CIV'
     TRIBUNAL_TRAVAIL = 'TRV'
@@ -52,19 +48,18 @@ class Dossier(models.Model):
         (CIVIL, 'Tribunal civil'),
         (TRIBUNAL_TRAVAIL, 'Tribunal du travail'),
     )
+    
+    client = models.ForeignKey(Client)
+    partie_adverse = models.ForeignKey(PartieAdverse)
+    adversaire = models.ForeignKey(Adversaire)
+    date_ouverture = models.DateField()
     matiere =  models.CharField(max_length=2,
                                       choices=MATIERE_JURIDIQUE,
                                       default=CIVIL)
     type = models.CharField(max_length=15)
     avocat1 = models.ForeignKey(Avocat)
-    avocat2 = models.ForeignKey(Avocat, blank=True)
-    echeance = models.DateField
+    avocat2 = models.ForeignKey(Avocat)
+    echeance = models.DateField()
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.client + "vs." + self.partie_adverse
 
-
-
-        
-    
-    
-
-
-    
