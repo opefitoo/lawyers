@@ -6,7 +6,7 @@ class Avocat(models.Model):
     user = models.OneToOneField(User, primary_key=True)
     job_position = models.CharField(max_length=20)
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.name + " " + self.first_name
+        return self.user
     
 class Assistant(models.Model):
     user = models.OneToOneField(User, primary_key=True)
@@ -27,10 +27,10 @@ class Client(models.Model):
 class Adversaire(models.Model):
     first_name = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
-    address = models.TextField(max_length=30)
-    zipcode = models.CharField(max_length=10)
-    city = models.CharField(max_length= 30)
-    phone_number = models.CharField(max_length=30)
+    address = models.TextField(max_length=30, blank = True)
+    zipcode = models.CharField(max_length=10, blank = True)
+    city = models.CharField(max_length= 30, blank = True)
+    phone_number = models.CharField(max_length=30, blank = True)
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.name + " " + self.first_name
 
@@ -57,8 +57,8 @@ class Dossier(models.Model):
                                       choices=MATIERE_JURIDIQUE,
                                       default=CIVIL)
     type = models.CharField(max_length=15)
-    avocat1 = models.ForeignKey(Avocat)
-#     avocat2 = models.ForeignKey(Avocat)
+    avocat1 = models.ForeignKey(Avocat, related_name='dossier_avocat1')
+    avocat2 = models.ForeignKey(Avocat, related_name = 'dossier_avocate2', blank = True)
     assistant = models.ForeignKey(Assistant)
     echeance = models.DateField()
     def __unicode__(self):  # Python 3: def __str__(self):
