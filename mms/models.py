@@ -58,7 +58,8 @@ class Dossier(models.Model):
                                       default=CIVIL)
     type = models.CharField(max_length=15)
     avocat1 = models.ForeignKey(Avocat)
-    avocat2 = models.ForeignKey(Avocat)
+#     avocat2 = models.ForeignKey(Avocat)
+    assistant = models.ForeignKey(Assistant)
     echeance = models.DateField()
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.client + "vs." + self.partie_adverse
