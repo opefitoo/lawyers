@@ -2,7 +2,7 @@ from django.contrib import admin
 from models import Avocat, Assistant, Client, Adversaire, PartieAdverse, Dossier
 
 class DossierAdmin(admin.ModelAdmin):
-    date_hierarchy = 'date'
+    date_hierarchy = 'date_ouverture'
     list_display = ('client', 'partie_adverse', 'adversaire', 'date_ouverture', 'echeance')
     search_fields = ['client__name', 'client__first_name', 'adversaire__name']
 
