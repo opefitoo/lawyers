@@ -60,14 +60,17 @@ class Dossier(models.Model):
     partie_adverse = models.ForeignKey(PartieAdverse)
     adversaire = models.ForeignKey(Adversaire)
     date_ouverture = models.DateField()
-    matiere =  models.CharField(max_length=2,
+    matiere =  models.CharField(max_length=3,
                                       choices=MATIERE_JURIDIQUE,
                                       default=CIVIL)
     type = models.CharField(max_length=15)
     avocat1 = models.ForeignKey(Avocat, related_name='dossier_avocat1')
-    avocat2 = models.ForeignKey(Avocat, related_name = 'dossier_avocate2', blank = True)
+    avocat2 = models.ForeignKey(Avocat, related_name = 'dossier_avocate2', 
+                                null = True, 
+                                blank = True, 
+                                default = None)
     assistant = models.ForeignKey(Assistant)
     echeance = models.DateField()
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.client + "vs." + self.partie_adverse
+        return self.client.name + " vs." + self.partie_adverse.name
 
