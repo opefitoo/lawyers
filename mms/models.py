@@ -24,10 +24,10 @@ class Client(models.Model):
     """
     first_name = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
-    address = models.TextField(max_length=30)
-    zipcode = models.CharField(max_length=10)
-    city = models.CharField(max_length= 30)
-    phone_number = models.CharField(max_length=30)
+    address = models.TextField(max_length=30, blank = True)
+    zipcode = models.CharField(max_length=10, blank = True)
+    city = models.CharField(max_length= 30, blank = True)
+    phone_number = models.CharField(max_length=30, blank = True)
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.name + " " + self.first_name
     
