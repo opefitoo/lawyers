@@ -6,13 +6,13 @@ class Avocat(models.Model):
     user = models.OneToOneField(User, primary_key=True)
     job_position = models.CharField(max_length=20)
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.user
+        return unicode(self.user)
     
 class Assistant(models.Model):
     user = models.OneToOneField(User, primary_key=True)
     job_position = models.CharField(max_length=20)
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.user 
+        return unicode(self.user) 
 
 class Client(models.Model):
     first_name = models.CharField(max_length=30)
