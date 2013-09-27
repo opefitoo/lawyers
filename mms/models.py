@@ -15,6 +15,13 @@ class Assistant(models.Model):
         return self.user 
 
 class Client(models.Model):
+    """
+    A client
+
+    # Create some clients
+    >>> client1 = Client.objects.create(name="nomclient1", address="addresse_client1")
+    >>> cat = Client.objects.create(name="nomclient2", address="addresse_client2")
+    """
     first_name = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
     address = models.TextField(max_length=30)
